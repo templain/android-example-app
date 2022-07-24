@@ -27,6 +27,7 @@ the same version as the embedded:
 mkdir -p ~/projects/
 kerl build git https://github.com/diodechain/otp.git diode/beta 24.beta
 kerl install 24.beta ~/projects/24.beta
+kiex install 1.11.4
 ```
 
 The current runtime that is precompiled and sits in assets/ folder is based on dev branch of OTP currently under

@@ -8,13 +8,19 @@ BASE=`pwd`
 # kerl build git https://github.com/diodechain/otp.git diode/beta 24.beta
 # kerl install 24.beta ~/projects/24.beta
 
+# You can install the same version as my elixir:
+# kiex install 1.11.4
+# For more information, see https://github.com/taylor/kiex
+
 . ~/projects/24.beta/activate
+. ~/.kiex/elixirs/elixir-1.11.4.env
 export MIX_ENV=prod
 export MIX_TARGET=android
 
 if [ ! -d "elixir-app" ]; then
   git clone https://github.com/elixir-desktop/desktop-example-app.git elixir-app
   cd elixir-app
+  git checkout -b hoge 2f0ce926cc5c258fbc0c60b3c0d557d3023fe1e7
   mix deps.get
 else
   cd elixir-app
@@ -27,6 +33,6 @@ fi
 mix assets.deploy && \
   mix release --overwrite && \
   cd _build/android_prod/rel/todo_app && \
-  zip -0r $BASE/src/main/assets/app.zip lib/ releases/ --exclude "*.so" && \
-  xz -9ef $BASE/src/main/assets/app.zip
+  zip -0r $BASE/app/src/main/assets/app.zip lib/ releases/ --exclude "*.so" && \
+  xz -9ef $BASE/app/src/main/assets/app.zip
 
